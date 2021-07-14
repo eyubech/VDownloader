@@ -1,30 +1,44 @@
-#libraries
 import tkinter as tk
 import pytube
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 
 root = tk.Tk()
-root.title('VDownloader')
-root.geometry('500x150')
+root.title('YTDownloader')
+root.geometry('420x200')
+root.resizable(False, False)
+root.config(background='brown1')
+title = tk.Label(root, text='YouTube Downloader',font=('Helvatical',25,'bold'),background=('brown1')).pack()
+
+
+download_Path = tk.StringVar()
+def Browse():
+    download_Directory = filedialog.askdirectory(initialdir="YOUR DIRECTORY PATH")
+    download_Path.set(download_Directory)
+
 
 lien_var = tk.StringVar()
-#fonction
 def url():
-    # to get url from Entry
     lien = lien_var.get()
     youtube = pytube.YouTube(lien)
     video = youtube.streams.first()
 
-    #video locatio
-    video.download('/home/ayoub/')
+    folder = download_Path.get()
+    video.download(folder)
     lien_var.set("")
     tk.messagebox.showinfo(title='Download', message='Done')
 
-title = tk.Label(root, text='youtube downloader',font=('Helvatical',30,'bold')).pack()
+
+link_here = tk.Label(root, text="Enter YT Link : ").pack()
 
 entry = tk.Entry(root, width='50', textvariable=lien_var).pack()
 
 btt = tk.Button(root,text='Download',command=url).pack()
+
+get_info = tk.Label(root, text="Enter Download Path : ").pack()
+
+download_path = tk.Entry(root, width='50', textvariable=download_Path).pack()
+
+choose_folder = tk.Button(root, text="Browse", command=Browse).pack()
 
 
 root.mainloop()
