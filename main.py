@@ -4,7 +4,7 @@ from tkinter import messagebox, filedialog
 
 root = tk.Tk()
 root.title('YTDownloader')
-root.geometry('420x200')
+root.geometry('450x250')
 root.resizable(False, False)
 root.config(background='brown1')
 title = tk.Label(root, text='YouTube Downloader',font=('Helvatical',25,'bold'),background=('brown1')).pack()
@@ -27,6 +27,13 @@ def url():
     lien_var.set("")
     tk.messagebox.showinfo(title='Download', message='Done')
 
+get_info = tk.Label(root, text="Enter Download Path : ").pack()
+
+download_path = tk.Entry(root, width='50', textvariable=download_Path).pack()
+
+choose_folder = tk.Button(root, text="Browse", command=Browse).pack()
+
+tk.Label(root, ).pack()
 
 link_here = tk.Label(root, text="Enter YT Link : ").pack()
 
@@ -34,11 +41,6 @@ entry = tk.Entry(root, width='50', textvariable=lien_var).pack()
 
 btt = tk.Button(root,text='Download',command=url).pack()
 
-get_info = tk.Label(root, text="Enter Download Path : ").pack()
-
-download_path = tk.Entry(root, width='50', textvariable=download_Path).pack()
-
-choose_folder = tk.Button(root, text="Browse", command=Browse).pack()
 
 
 root.mainloop()
